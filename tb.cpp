@@ -14,10 +14,11 @@ void tb::source(){
 
 	//Send stimulus to DUT (Design under test)
 	for( int i = 0; i < 64; i++){
-		if (i > 23 && i < 29)
+		if (i > 23 && i < 29){
 			tmp = 256;
-		else
-			tmp = 0;
+		}
+		else{
+			tmp = 0;}
 		inp_vld.write( 1 );
 		inp.write( tmp );
 		start_time[i] = sc_time_stamp();
@@ -25,6 +26,7 @@ void tb::source(){
 			wait();
 		} while( !inp_rdy.read() );
 		inp_vld.write( 0 );
+		
 	}
 
 	// Hanging simulation guard condition
