@@ -1,6 +1,6 @@
 SYSTEM_ARCH=linux64
 #or linux for 32 bit machines
-SYSTEMC_HOME=/mnt/c/systemC/systemc-2.3.3
+SYSTEMC_HOME=/usr/local/systemc-2.3.1/
 LIB_DIRS=$(SYSTEMC_HOME)/lib-linux64 
 #а не SYSTEMC_HOME?
 
@@ -23,7 +23,7 @@ DEPENDENCIES = \
 
 LIBS= -lsystemc -lm
 
-LDFLAGS= -Wl,-rpath=$(SYSTEMC_HOME)/lib-$(SYSTEM_ARCH)/libsystemc-2.3.3.so
+LDFLAGS= -Wl,-rpath=$(SYSTEMC_HOME)/lib-$(SYSTEM_ARCH)
 
 TESTS= main
 
@@ -42,8 +42,8 @@ clean:
 GOLD_DIR=./golden
 GOLD_FILE=$(GOLD_DIR)/ref_output.dat
 
-cmp_result:\
+cmp_result:
 	@echo "******************************"
-	@if diff -w $(GOLD_FILE) ./output_dat; then echo "SUCCESS";\
+	@if diff -w $(GOLD_FILE) ./ref_output.dat; then echo "SUCCESS";\
 	else echo "FAIL"; fi
 	@echo "*******************************"
